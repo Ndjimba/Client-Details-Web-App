@@ -78,29 +78,32 @@ The **Client Details App** is a web application built with **Flask** for the bac
    npm start
    ```
 
-## Application Structure
+## Application Structure (MVC Architecture)
 
 ```
-.
-├── backend
-│   ├── app.py                 # Main Flask application
-│   ├── config.py              # Configuration settings for Flask and SQLAlchemy
-│   └── models.py              # Database models (Contact)
-└── frontend
-    ├── src
-    │   ├── App.js             # Main React component
-    │   ├── ContactList.js      # Component to display the list of contacts
-    │   └── ContactForm.js      # Component for adding/editing contacts
-    └── package.json            # npm package configuration
-```
-
-## Usage
-
-1. **Creating a Contact**: Click on "Add New Contact" to open the modal, fill in the details, and submit the form. 📝
-2. **Editing a Contact**: Click "Edit" next to the desired contact to populate the form with existing data, make changes, and submit. ✨
-3. **Deleting a Contact**: Click "Delete" next to a contact to remove it from the list after confirming the action. ⚠️
-
-## License
+backend/                    # 🔙 Backend folder containing Flask API & database logic
+│
+├── controllers/            # 🧠 Controller layer – handles API routing and business logic
+│   └── main.py             #    Defines all Flask routes (API endpoints) and links Models with Views
+│
+├── models/                 # 🗃️ Model layer – defines database structure
+│   └── models.py           #    SQLAlchemy models for Contact, Client, and the linking table
+│
+├── config.py               # ⚙️ App configuration – sets up Flask app, CORS, database, env variables
+├── .env                    # 🔐 Stores environment variables like database URI
+└── requirements.txt        # 📦 Python dependencies for backend (Flask, SQLAlchemy, dotenv, etc.)
+frontend/src/               # 🖥️ Frontend source folder using React for UI
+│
+├── components/             # 💡 View layer – reusable React components for the UI
+│   ├── ContactForm.js      #    Form for adding/editing a contact
+│   ├── ContactList.js      #    Displays the contact table with edit/delete options
+│   ├── ClientForm.js       #    Form for creating a new client (with auto-code generation)
+│   ├── ClientList.js       #    Displays the list of clients and linked contacts count
+│   └── Tabs.js             #    Tab navigation component (Contacts ↔ Clients)
+│
+├── App.js                  # 🧩 Main app component – controls tab switching, modal logic, and state
+├── App.css                 # 🎨 Application-wide styling (buttons, tables, modals, etc.)
+└── index.js                # 🚪 Entry point for React – renders <App /> into the DOM
 
 ## Acknowledgments
 
